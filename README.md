@@ -12,7 +12,7 @@
 You can install the package via composer:
 
 ```bash
-composer require klvze/online-users
+composer require klevze/online-users
 ```
 
 You can publish and run the migrations with:
