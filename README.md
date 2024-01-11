@@ -84,7 +84,7 @@ Or you can use it directly in blade view:
 You can see a working demo at these sites:
 
 - The Wallpapers: https://thewallpapers.net
-- Joke Station: https://jokestation.net
+- Joke Station: https://jokestation.org
 
 ## License
 
