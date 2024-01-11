@@ -1,0 +1,39 @@
+{
+    "name": "klevze/online-users",
+    "description": "Display online users on a webpage",
+    "keywords": ["laravel", "online", "users", "count"],
+    "homepage": "https://github.com/klevze/agent",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gregor Klevže",
+            "email": "gregor@klevze.si",
+            "homepage": "https://thewallpapers.net"
+        }
+    ],
+    "require": {
+        "php": "^7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.1",
+        "php-coveralls/php-coveralls": "^0.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Klevze\\OnlineUsers\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Klevze\\OnlineUsers\\OnlineUsersServiceProvider"
+            ],
+            "aliases": {
+            }
+        }
+    },
+    "suggest": {
+        "illuminate/support": "Required for laravel service providers"
+    }
+}
