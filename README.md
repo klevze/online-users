@@ -80,6 +80,12 @@ Or you can use it directly in blade view:
 <p>Currently browsing: {{ OnlineUsers::getActiveUsers() ?? 0 }}</p>
 ```
 
+## Demo
+You can see a working demo at these sites:
+
+- The Wallpapers: https://thewallpapers.net
+- Joke Station: https://jokestation.net
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
