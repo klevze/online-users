@@ -1,9 +1,9 @@
 # Laravel plugin for displaying online users on a webpage
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/klevze/online-users.svg?style=flat-square)](https://packagist.org/packages/klevze/online-users)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/klevze/online-users/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/klevze/online-users/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/klevze/online-users/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/klevze/online-users/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/klevze/online-users.svg?style=flat-square)](https://packagist.org/packages/klevze/online-users)
 
 "Online Users" is a Laravel package designed to effortlessly track and display the real-time count of users currently active on your web application. With seamless integration, this package provides a quick and reliable solution for monitoring and presenting the dynamic online user presence, enhancing the overall user experience on your Laravel-powered website.
 
@@ -18,36 +18,53 @@ composer require klvze/online-users
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
+php artisan vendor:publish --tag="online-users-migrations"
 php artisan migrate
 ```
 
+## Integration with Laravel's Kernel Middleware
 
-This is the contents of the published config file:
+To enable the "Online Users" middleware in your Laravel application, follow these steps:
 
-```php
-return [
-];
-```
+1. Open the `app/Http/Kernel.php` file in your Laravel project.
 
-Optionally, you can publish the views using
+2. Locate the `$middlewareGroups` property, specifically within the `web` middleware group.
 
-```bash
-php artisan vendor:publish --tag=":package_slug-views"
-```
+3. Add the following line to the `web` middleware group:
 
-## Usage
+   ```php
+   protected $middlewareGroups = [
+       'web' => [
+           // ... other middleware entries
+           \Klevze\OnlineUsers\Middleware\TrackUserActivity::class,
+           // ... other middleware entries
+       ],
+       // ... other middleware groups
+   ];
+    ```
 
-```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
-```
+## Cleanup Inactive Users Console Command
 
-## Testing
+The "CleanupInactiveUsers" console command provided by the "Online Users" package allows you to remove inactive users from the `user_activities` table. Follow the steps below to integrate and schedule the cleanup task.
 
-```bash
-composer test
-```
+1. Open the `app/Console/Kernel.php` file in your Laravel project.
+
+2. Locate the `schedule` method and add the following entry to schedule the `cleanup:inactive-users` command every five minutes:
+
+    ```php
+    protected function schedule(Schedule $schedule)
+    {
+        // ... other scheduled tasks
+
+        $schedule->command('cleanup:inactive-users')->everyFiveMinutes();
+
+        // ... other scheduled tasks
+    }
+    ```
+
+3. Save the changes to the `Kernel.php` file.
+
+Now, the "CleanupInactiveUsers" console command will run every five minutes, cleaning up inactive users from the `user_activities` table.
 
 ## License
 
