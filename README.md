@@ -66,6 +66,20 @@ The "CleanupInactiveUsers" console command provided by the "Online Users" packag
 
 Now, the "CleanupInactiveUsers" console command will run every five minutes, cleaning up inactive users from the `user_activities` table.
 
+## Usage
+
+Once package is installed, you can use the `OnlineUsers` class to get the number of active users. For example, the following code will get the number of active users:
+
+```php
+$activeUsers = OnlineUsers::getActiveUsers();
+```
+
+Or you can use it directly in blade view:
+
+```html
+<p>Currently browsing: {{ OnlineUsers::getActiveUsers() ?? 0 }}</p>
+```
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

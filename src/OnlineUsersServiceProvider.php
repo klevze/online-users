@@ -3,9 +3,22 @@
 namespace Klevze\OnlineUsers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\AliasLoader;
 
 class OnlineUsersServiceProvider extends ServiceProvider
 {
+
+    public function register()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/Migrations');
+
+        $this->app->booting(function() {
+            $loader = AliasLoader::getInstance();
+            $loader->alias('OnlineUsers', 'Klevze\OnlineUsers\Facades\OnlineUsers');
+
+        });
+    }
+
     /**
      * Bootstrap services.
      *
@@ -13,8 +26,6 @@ class OnlineUsersServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/Migrations');
-
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\CleanupInactiveUsers::class,
