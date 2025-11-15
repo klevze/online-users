@@ -6,9 +6,6 @@ on:
       laravel:
         required: true
         type: string
-    secrets:
-      COVERALLS_REPO_TOKEN:
-        required: false
 
 jobs:
   laravel-tests:
@@ -73,9 +70,3 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
-
-    - name: Upload coverage to Coveralls
-      if: ${{ secrets.COVERALLS_REPO_TOKEN != '' }}
-      env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-      run: vendor/bin/php-coveralls -v

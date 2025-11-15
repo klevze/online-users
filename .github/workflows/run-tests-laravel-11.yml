@@ -11,4 +11,3 @@ jobs:
     uses: ./.github/workflows/run-tests-reusable.yml
     with:
       laravel: "11"
-    secrets: inherit
