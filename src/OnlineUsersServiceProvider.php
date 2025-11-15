@@ -2,12 +2,11 @@
 
 namespace Klevze\OnlineUsers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\ServiceProvider;
 
 class OnlineUsersServiceProvider extends ServiceProvider
 {
-
     public function register()
     {
         // Merge package config
@@ -19,7 +18,7 @@ class OnlineUsersServiceProvider extends ServiceProvider
             return new OnlineUsers();
         });
 
-        $this->app->booting(function() {
+        $this->app->booting(function () {
             $loader = AliasLoader::getInstance();
             $loader->alias('OnlineUsers', 'Klevze\OnlineUsers\Facades\OnlineUsers');
 

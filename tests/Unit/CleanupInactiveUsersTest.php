@@ -2,10 +2,10 @@
 
 namespace Klevze\OnlineUsers\Tests\Unit;
 
-use Orchestra\Testbench\TestCase;
+use Carbon\Carbon;
 use Klevze\OnlineUsers\Models\UserActivity;
 use Klevze\OnlineUsers\OnlineUsers as OnlineUsersService;
-use Carbon\Carbon;
+use Orchestra\Testbench\TestCase;
 
 class CleanupInactiveUsersTest extends TestCase
 {
@@ -18,9 +18,9 @@ class CleanupInactiveUsersTest extends TestCase
     {
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
-            'driver' => 'sqlite',
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
+            'prefix'   => '',
         ]);
     }
 
@@ -43,13 +43,13 @@ class CleanupInactiveUsersTest extends TestCase
 
         // Recent activity - should stay
         UserActivity::create([
-            'user_ip' => '10.0.0.1',
+            'user_ip'       => '10.0.0.1',
             'last_activity' => $now,
         ]);
 
         // Old activity - should be cleaned up
         UserActivity::create([
-            'user_ip' => '10.0.0.2',
+            'user_ip'       => '10.0.0.2',
             'last_activity' => $now->copy()->subMinutes(10),
         ]);
 

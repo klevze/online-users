@@ -2,9 +2,9 @@
 
 namespace Klevze\OnlineUsers\Tests\Unit;
 
-use Orchestra\Testbench\TestCase;
 use Klevze\OnlineUsers\Models\UserActivity;
 use Klevze\OnlineUsers\OnlineUsers as OnlineUsersService;
+use Orchestra\Testbench\TestCase;
 
 class OnlineUsersTest extends TestCase
 {
@@ -17,9 +17,9 @@ class OnlineUsersTest extends TestCase
     {
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
-            'driver' => 'sqlite',
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
+            'prefix'   => '',
         ]);
     }
 
@@ -35,7 +35,7 @@ class OnlineUsersTest extends TestCase
     public function test_get_active_users_counts_successfully()
     {
         UserActivity::create([
-            'user_ip' => '127.0.0.1',
+            'user_ip'       => '127.0.0.1',
             'last_activity' => now(),
         ]);
 

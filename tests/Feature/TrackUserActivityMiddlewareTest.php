@@ -2,11 +2,11 @@
 
 namespace Klevze\OnlineUsers\Tests\Feature;
 
-use Orchestra\Testbench\TestCase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Klevze\OnlineUsers\Middleware\TrackUserActivity;
 use Klevze\OnlineUsers\Models\UserActivity;
+use Orchestra\Testbench\TestCase;
 
 class TrackUserActivityMiddlewareTest extends TestCase
 {
@@ -19,9 +19,9 @@ class TrackUserActivityMiddlewareTest extends TestCase
     {
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
-            'driver' => 'sqlite',
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
+            'prefix'   => '',
         ]);
     }
 

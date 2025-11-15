@@ -2,8 +2,8 @@
 
 namespace Klevze\OnlineUsers\Tests\Unit;
 
-use Orchestra\Testbench\TestCase;
 use Klevze\OnlineUsers\Models\UserActivity;
+use Orchestra\Testbench\TestCase;
 
 class PopulateUserIpHashCommandTest extends TestCase
 {
@@ -16,9 +16,9 @@ class PopulateUserIpHashCommandTest extends TestCase
     {
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
-            'driver' => 'sqlite',
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
+            'prefix'   => '',
         ]);
     }
 
@@ -59,7 +59,7 @@ class PopulateUserIpHashCommandTest extends TestCase
         $this->app['config']->set('online-users.hash_algorithm', 'sha256');
 
         $this->artisan('online-users:populate-ip-hash --dry-run')
-            ->expectsOutput("Dry run: 1 records would be processed.")
+            ->expectsOutput('Dry run: 1 records would be processed.')
             ->assertExitCode(0);
 
         // The record should still have null user_ip_hash (no changes in dry-run)

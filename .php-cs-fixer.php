@@ -6,6 +6,7 @@ use PhpCsFixer\Finder;
 $finder = Finder::create()
     ->in(__DIR__ . '/src')
     ->in(__DIR__ . '/tests')
+    ->exclude('Migrations')
     ->ignoreVCS(true)
 ;
 
@@ -22,8 +23,4 @@ return $config->setRules([
 ])->setFinder($finder)
     ->setUsingCache(true)
     ->setRiskyAllowed(true)
-    ->setCacheFile(__DIR__.'/.php-cs-fixer.cache')
-    ->setSkip([
-        // Exclude migrations by default; adjust to your preference
-        'src/Migrations' => true,
-    ]);
+    ->setCacheFile(__DIR__.'/.php-cs-fixer.cache');

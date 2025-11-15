@@ -2,8 +2,8 @@
 
 namespace Klevze\OnlineUsers\Tests\Unit;
 
-use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\Schema;
+use Orchestra\Testbench\TestCase;
 
 class UserIpHashIndexTest extends TestCase
 {
@@ -16,9 +16,9 @@ class UserIpHashIndexTest extends TestCase
     {
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
-            'driver' => 'sqlite',
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
+            'prefix'   => '',
         ]);
     }
 
@@ -33,13 +33,13 @@ class UserIpHashIndexTest extends TestCase
 
     public function test_index_exists_for_user_ip_hash()
     {
-        $conn = Schema::getConnection();
+        $conn   = Schema::getConnection();
         $driver = $conn->getDriverName();
 
         // Use the database's PRAGMA/index listing for sqlite. For other drivers, fallback to Doctrine Schema Manager.
         if ($driver === 'sqlite') {
             $indexes = $conn->select("PRAGMA index_list('user_activities')");
-            $found = false;
+            $found   = false;
             foreach ($indexes as $idx) {
                 $name = $idx->name ?? $idx->idxname ?? null;
                 if ($name && str_contains($name, 'user_ip_hash')) {
@@ -52,7 +52,7 @@ class UserIpHashIndexTest extends TestCase
         }
 
         // Fallback to Doctrine Schema Manager for non-SQLite drivers (ensure doctrine/dbal is present in dev deps).
-        $sm = $conn->getDoctrineSchemaManager();
+        $sm      = $conn->getDoctrineSchemaManager();
         $indexes = $sm->listTableIndexes('user_activities');
 
         $found = false;

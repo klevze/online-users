@@ -2,11 +2,11 @@
 
 namespace Klevze\OnlineUsers\Tests\Feature;
 
-use Orchestra\Testbench\TestCase;
+use Illuminate\Console\Scheduling\Schedule;
 use Klevze\OnlineUsers\Models\UserActivity;
 use Klevze\OnlineUsers\OnlineUsers as OnlineUsersService;
 use Mockery;
-use Illuminate\Console\Scheduling\Schedule;
+use Orchestra\Testbench\TestCase;
 
 class CleanupInactiveUsersCommandTest extends TestCase
 {
@@ -19,9 +19,9 @@ class CleanupInactiveUsersCommandTest extends TestCase
     {
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
-            'driver' => 'sqlite',
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
+            'prefix'   => '',
         ]);
     }
 
@@ -37,12 +37,12 @@ class CleanupInactiveUsersCommandTest extends TestCase
     {
         // Create recent and old records
         UserActivity::create([
-            'user_ip' => '10.0.0.1',
+            'user_ip'       => '10.0.0.1',
             'last_activity' => now(),
         ]);
 
         UserActivity::create([
-            'user_ip' => '10.0.0.2',
+            'user_ip'       => '10.0.0.2',
             'last_activity' => now()->subMinutes(10),
         ]);
 
@@ -72,11 +72,11 @@ class CleanupInactiveUsersCommandTest extends TestCase
     {
         // Create a stale entry and a recent one
         UserActivity::create([
-            'user_ip' => '10.0.0.1',
+            'user_ip'       => '10.0.0.1',
             'last_activity' => now()->subMinutes(10),
         ]);
         UserActivity::create([
-            'user_ip' => '10.0.0.2',
+            'user_ip'       => '10.0.0.2',
             'last_activity' => now(),
         ]);
 

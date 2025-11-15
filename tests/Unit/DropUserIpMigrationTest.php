@@ -2,8 +2,8 @@
 
 namespace Klevze\OnlineUsers\Tests\Unit;
 
-use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\Schema;
+use Orchestra\Testbench\TestCase;
 
 class DropUserIpMigrationTest extends TestCase
 {
@@ -16,9 +16,9 @@ class DropUserIpMigrationTest extends TestCase
     {
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
-            'driver' => 'sqlite',
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
+            'prefix'   => '',
         ]);
     }
 

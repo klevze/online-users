@@ -7,12 +7,12 @@ use Klevze\OnlineUsers\Models\UserActivity;
 
 class PopulateUserIpHash extends Command
 {
-    protected $signature = 'online-users:populate-ip-hash {--batch=1000 : Number of records to process per batch} {--dry-run : Show how many records would be updated without making changes}';
+    protected $signature   = 'online-users:populate-ip-hash {--batch=1000 : Number of records to process per batch} {--dry-run : Show how many records would be updated without making changes}';
     protected $description = 'Populate the user_ip_hash column for existing user_activities using the configured salt and algorithm.';
 
     public function handle(): int
     {
-        $salt = config('online-users.ip_salt');
+        $salt      = config('online-users.ip_salt');
         $algorithm = config('online-users.hash_algorithm', 'sha256');
 
         if (empty($salt)) {
@@ -48,7 +48,7 @@ class PopulateUserIpHash extends Command
 
         $progress->finish();
         $this->info('');
-            $this->info('Population complete.');
+        $this->info('Population complete.');
 
         return 0;
     }
