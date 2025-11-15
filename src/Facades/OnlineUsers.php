@@ -13,6 +13,6 @@ class OnlineUsers extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return '\Klevze\OnlineUsers\OnlineUsers';
+        return \Klevze\OnlineUsers\OnlineUsers::class;
     }
 }

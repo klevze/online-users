@@ -1,0 +1,9 @@
+parameters:
+    level: 7
+    paths:
+        - src
+    ignoreErrors:
+        # Allow for dynamic facades and simple helper usage — trim as needed
+        - '#Call to an undefined (static )?method#'
+        - '#uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory#'
+    checkMissingIterableValueType: false
