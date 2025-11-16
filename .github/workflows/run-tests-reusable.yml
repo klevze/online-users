@@ -37,14 +37,14 @@ jobs:
       run: |
         case "${{ inputs.laravel }}" in
           "10") echo "TESTBENCH=^10.0" >> $GITHUB_ENV ;;
-          "11") echo "TESTBENCH=^10.0" >> $GITHUB_ENV ;;
+          "11") echo "TESTBENCH=^11.0@dev" >> $GITHUB_ENV ;;
           "12") echo "TESTBENCH=^10.0" >> $GITHUB_ENV ;;
         esac
 
     - name: Require Laravel components for test matrix
       run: |
         composer require "illuminate/support:${ILLUMINATE}" --no-interaction --no-update || true
-        composer require "orchestra/testbench:${TESTBENCH}" --no-interaction --no-update || true
+        composer require --dev "orchestra/testbench:${TESTBENCH}" --no-interaction --no-update || true
         composer update --no-interaction --prefer-dist --with-all-dependencies
 
     - name: Cache Composer dependencies
