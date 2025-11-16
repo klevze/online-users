@@ -6,7 +6,7 @@
 You can also set these variables in your `.env` file (example below).
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/klevze/online-users.svg?style=flat-square)](https://packagist.org/packages/klevze/online-users)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/klevze/online-users/laravel.yml?branch=main&label=tests&style=flat-square)](https://github.com/klevze/online-users/actions?query=workflow%3Alaravel+branch%3Amain)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/klevze/online-users/run-tests-laravel-12.yml?branch=main&label=tests&style=flat-square)](https://github.com/klevze/online-users/actions?query=workflow%3Arun-tests-laravel-12+branch%3Amain)
 
 <!-- Per-Laravel-version badges (each runs a workflow file) -->
 [![Laravel 12](https://img.shields.io/github/actions/workflow/status/klevze/online-users/run-tests-laravel-12.yml?branch=main&label=Laravel%2012&style=flat-square)](https://github.com/klevze/online-users/actions?query=workflow%3Arun-tests-laravel-12+branch%3Amain)
