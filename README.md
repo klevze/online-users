@@ -9,13 +9,12 @@ You can also set these variables in your `.env` file (example below).
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/klevze/online-users/laravel.yml?branch=main&label=tests&style=flat-square)](https://github.com/klevze/online-users/actions?query=workflow%3Alaravel+branch%3Amain)
 
 <!-- Per-Laravel-version badges (each runs a workflow file) -->
-[![Laravel 10](https://img.shields.io/github/actions/workflow/status/klevze/online-users/run-tests-laravel-10.yml?branch=main&label=Laravel%2010&style=flat-square)](https://github.com/klevze/online-users/actions?query=workflow%3Arun-tests-laravel-10+branch%3Amain)
-[![Laravel 11](https://img.shields.io/github/actions/workflow/status/klevze/online-users/run-tests-laravel-11.yml?branch=main&label=Laravel%2011&style=flat-square)](https://github.com/klevze/online-users/actions?query=workflow%3Arun-tests-laravel-11+branch%3Amain)
+[![Laravel 12](https://img.shields.io/github/actions/workflow/status/klevze/online-users/run-tests-laravel-12.yml?branch=main&label=Laravel%2012&style=flat-square)](https://github.com/klevze/online-users/actions?query=workflow%3Arun-tests-laravel-12+branch%3Amain)
 [![Laravel 12](https://img.shields.io/github/actions/workflow/status/klevze/online-users/run-tests-laravel-12.yml?branch=main&label=Laravel%2012&style=flat-square)](https://github.com/klevze/online-users/actions?query=workflow%3Arun-tests-laravel-12+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/klevze/online-users/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/klevze/online-users/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/klevze/online-users.svg?style=flat-square)](https://packagist.org/packages/klevze/online-users)
 
-> Note: Each of the per-Laravel badges runs its own workflow file. This provides explicit status per Laravel version but increases CI runs and maintenance if workflow steps change. If you'd rather keep one matrix-based `laravel.yml` (single badge), remove or consolidate the per-version workflow files.
+> Note: This repository currently runs CI only for Laravel 12. The older per-version workflow files for Laravel 10 and 11 were removed to simplify the workflow matrix and remove duplicate CI runs. If you need per-Laravel-version badges again, recreate the per-version workflows or restore `run-tests-laravel-10.yml` and `run-tests-laravel-11.yml`.
 
 "Online Users" is a Laravel package designed to effortlessly track and display the real-time count of users currently active on your web application. With seamless integration, this package provides a quick and reliable solution for monitoring and presenting the dynamic online user presence, enhancing the overall user experience on your Laravel-powered website.
 
