@@ -37,7 +37,13 @@ jobs:
       run: |
         case "${{ inputs.laravel }}" in
           "10") echo "TESTBENCH=^10.0" >> $GITHUB_ENV ;;
-          "11") echo "TESTBENCH=^11.0@dev" >> $GITHUB_ENV ;;
+          "11")
+            if [ "${{ matrix.php }}" = "8.3" ]; then
+              echo "TESTBENCH=^11.0@dev" >> $GITHUB_ENV ;
+            else
+              echo "TESTBENCH=^10.0" >> $GITHUB_ENV ;
+            fi
+            ;;
           "12") echo "TESTBENCH=^10.0" >> $GITHUB_ENV ;;
         esac
 
