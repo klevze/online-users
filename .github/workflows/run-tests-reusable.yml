@@ -33,25 +33,13 @@ jobs:
           "12") echo "ILLUMINATE=^12.0" >> $GITHUB_ENV ;;
         esac
 
-    - name: Map Laravel to Testbench version
-      run: |
-        case "${{ inputs.laravel }}" in
-          "10") echo "TESTBENCH=^10.0" >> $GITHUB_ENV ;;
-          "11")
-            if [ "${{ matrix.php }}" = "8.3" ]; then
-              echo "TESTBENCH=^11.0@dev" >> $GITHUB_ENV ;
-            else
-              echo "TESTBENCH=^10.0" >> $GITHUB_ENV ;
-            fi
-            ;;
-          "12") echo "TESTBENCH=^10.0" >> $GITHUB_ENV ;;
-        esac
-
     - name: Require Laravel components for test matrix
       run: |
-        composer require "illuminate/support:${ILLUMINATE}" --no-interaction --no-update || true
-        composer require --dev "orchestra/testbench:${TESTBENCH}" --no-interaction --no-update || true
-        composer update --no-interaction --prefer-dist --with-all-dependencies
+        composer remove "illuminate/support" --no-interaction --no-update --dev || true
+        composer remove "orchestra/testbench" --no-interaction --no-update --dev || true
+        composer require "illuminate/support:${ILLUMINATE}" --no-interaction --no-update
+        composer require --dev "orchestra/testbench" --no-interaction --no-update --with-all-dependencies
+        composer update "illuminate/support" "orchestra/testbench" --no-interaction --prefer-dist --with-all-dependencies
 
     - name: Cache Composer dependencies
       uses: actions/cache@v3
