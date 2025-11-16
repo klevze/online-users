@@ -62,7 +62,10 @@ jobs:
         fi
 
     - name: Directory Permissions
-      run: chmod -R 777 storage bootstrap/cache
+      run: |
+        # Create directories if they don't exist (package repos won't have them)
+        mkdir -p storage bootstrap/cache
+        chmod -R 777 storage bootstrap/cache
 
     - name: Create Database
       run: |
