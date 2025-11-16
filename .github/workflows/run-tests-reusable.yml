@@ -51,8 +51,15 @@ jobs:
           ${{ runner.os }}-composer-${{ inputs.laravel }}-
           ${{ runner.os }}-composer-
 
-    - name: Generate key
-      run: php artisan key:generate
+    - name: Generate app key (if needed)
+      run: |
+        if [ -f artisan ]; then
+          php artisan key:generate
+        else
+          # When running in package context there is no artisan - set APP_KEY in .env
+          php -r "file_exists('.env') || copy('.env.example', '.env');"
+          php -r "file_put_contents('.env', PHP_EOL . 'APP_KEY=base64:' . base64_encode(random_bytes(32)), FILE_APPEND);"
+        fi
 
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
